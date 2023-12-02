@@ -18,27 +18,14 @@ public class PlayerMoveControl : MonoBehaviour
     private float targetSpeed;
     private float walkSpeed = 4.0f;
     private float runSpeed = 7.0f;
-
-    public GameObject rifleInHand;
-    public GameObject rifleOnBack;
-    public _25Dressed input;
     
-    public TwoBoneIKConstraint rightHandConstraint;
-    public TwoBoneIKConstraint leftHandConstraint;
     private void Start() {
         animator = GetComponent<Animator>();
         playerTransform = transform;
-        rifleInHand.SetActive(false);
-        rifleOnBack.SetActive(true);
     }
     private void Update(){
         RotatePlayer();
         MovePlayer();
-        SetTwoHandsWeight();
-    }
-    private void SetTwoHandsWeight(){
-        rightHandConstraint.weight = animator.GetFloat("Right Hand Weight");
-        leftHandConstraint.weight = animator.GetFloat("Left Hand Weight");
     }
     public void GetPlayerMoveInput(InputAction.CallbackContext context){
         playerInputVec = context.ReadValue<Vector2>();
@@ -84,13 +71,9 @@ public class PlayerMoveControl : MonoBehaviour
     public void EnableRifle(EnableRifleType rifleType){
         switch(rifleType){
             case EnableRifleType.BackRifle:
-                rifleOnBack.SetActive(true);
-                rifleInHand.SetActive(false);
                 Debug.Log("激活背上的枪");
                 break;
             case EnableRifleType.HandRifle: 
-                rifleInHand.SetActive(true);
-                rifleOnBack.SetActive(false);
                 Debug.Log("激活手上的枪");
                 break;
         }
