@@ -10,14 +10,15 @@ public class PlayerMoveControl : MonoBehaviour
     private Vector2 playerInputVec;
     private bool isRunning;
     private bool isHandleGun;
+    private bool isAiming;
     private Vector3 playerMovement;
     private Transform playerTransform; //替换transform优化代码运行效率
 
     private float rotateSpeed = 1000f;
     private float currentSpeed;
     private float targetSpeed;
-    private float walkSpeed = 4.0f;
-    private float runSpeed = 7.0f;
+    private float walkSpeed = 2.0f;
+    private float runSpeed = 3.6f;
     
     private void Start() {
         animator = GetComponent<Animator>();
@@ -49,15 +50,23 @@ public class PlayerMoveControl : MonoBehaviour
         animator.SetFloat("Vertical Speed", currentSpeed);
     }
     public void GetPlayerHandleGun(InputAction.CallbackContext context){
-        if(isHandleGun == false) { animator.SetBool("isHandleGun", true); isHandleGun = true;}
-        else { animator.SetBool("isHandleGun", false); isHandleGun = false;}
+        if(isHandleGun == false) { 
+            animator.SetBool("isHandleGun", true);
+            isHandleGun = true; 
+        }
+        else { 
+            animator.SetBool("isHandleGun", false);
+            isHandleGun = false;
+        }
     }
     public void GetPlayerAim(InputAction.CallbackContext context){
         if(context.action.phase == InputActionPhase.Started){
             animator.SetBool("isAiming", true);
+            
         }
         else if(context.action.phase == InputActionPhase.Canceled){
             animator.SetBool("isAiming", false);
+            
         }
     }
     public void GetPlayerFire(InputAction.CallbackContext context){
