@@ -1,0 +1,4 @@
+repository "3D project@r-tof@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
