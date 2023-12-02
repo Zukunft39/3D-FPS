@@ -1115,7 +1115,7 @@ MonoBehaviour:
     m_Root: {fileID: 1559822946}
     m_Mid: {fileID: 515228110}
     m_Tip: {fileID: 693922515}
-    m_Target: {fileID: 260248239}
+    m_Target: {fileID: 567931390}
     m_Hint: {fileID: 0}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -1256,10 +1256,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400000, guid: fddeeac0ebed86c4cab4320764b5c227,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 260248239}
     - targetCorrespondingSourceObject: {fileID: 400002, guid: fddeeac0ebed86c4cab4320764b5c227,
         type: 3}
       insertIndex: -1
@@ -1272,37 +1268,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 11255005}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &260248238
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 260248239}
-  m_Layer: 0
-  m_Name: BackRightHandTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &260248239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260248238}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.3344717, y: -0.6266491, z: 0.54680604, w: 0.44321877}
-  m_LocalPosition: {x: -0.043441877, y: -0.02009964, z: 0.19040295}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1772239077}
-  m_LocalEulerAnglesHint: {x: -59.253, y: 52.246, z: -111.709}
 --- !u!4 &267305427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2521118952604173696, guid: 0c2ad3a9a07f17b46a67327013fdef35,
@@ -5326,7 +5291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
     m_Root: {fileID: 527039170}
     m_Mid: {fileID: 1588793466}
