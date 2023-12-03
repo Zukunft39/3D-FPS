@@ -47,9 +47,11 @@ public class IKTargetsController : MonoBehaviour
     public Transform leftHandTarget;
     public Transform leftHandTargetAim;
     public Transform leftHandTargetIdle;
+    public Transform leftHandTargetBack;
     public Transform rightHandTarget;
     public Transform rightHandTargetAim;
     public Transform rightHandTargetIdle;
+    public Transform rightHandTargetBack;
     public void IKTargetsIdle(){   
         leftHandTarget.position = leftHandTargetIdle.position;
         leftHandTarget.rotation = leftHandTargetIdle.rotation;
@@ -61,5 +63,11 @@ public class IKTargetsController : MonoBehaviour
         leftHandTarget.rotation = leftHandTargetAim.rotation;
         rightHandTarget.position = rightHandTargetAim.position;
         rightHandTarget.rotation = rightHandTargetAim.rotation;
+    }
+    public void IKTargetsBack(){
+        leftHandTarget.position = leftHandTargetBack.position;
+        leftHandTarget.rotation = leftHandTargetBack.rotation;
+        rightHandTarget.position = rightHandTargetBack.position;
+        rightHandTarget.rotation = rightHandTargetBack.rotation;
     }
 }
