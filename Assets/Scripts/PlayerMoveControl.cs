@@ -4,23 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations.Rigging;
-using UnityEditor.Animations;
 public class PlayerMoveControl : MonoBehaviour
 {
     private Animator animator;
     private Vector2 playerInputVec;
-    private bool isRunning = false;
-    private bool isAiming = false;
-    private bool isHandleGun = false;
+    private bool isRunning;
+    private bool isHandleGun;
+    private bool isAiming;
     private Vector3 playerMovement;
     private Transform playerTransform; //替换transform优化代码运行效率
 
-    public int temp = 0;
     private float rotateSpeed = 1000f;
     private float currentSpeed;
     private float targetSpeed;
     private float walkSpeed = 2.0f;
     private float runSpeed = 3.6f;
+<<<<<<< HEAD
 
     public GameObject rifleOnBack;
     public GameObject rifleInHand;
@@ -34,15 +33,17 @@ public class PlayerMoveControl : MonoBehaviour
 
     public TwoBoneIKConstraint rightHandIKConstraint;
     public TwoBoneIKConstraint leftHandIKConstraint;
+=======
+    
+>>>>>>> parent of d687da8 (恢复到修改Curve文件)
     private void Start() {
         animator = GetComponent<Animator>();
         playerTransform = transform;
-        rifleOnBack.SetActive(true);
-        rifleInHand.SetActive(false);
     }
     private void Update(){
         RotatePlayer();
         MovePlayer();
+<<<<<<< HEAD
         GetRifleIdle();
         SetTwoHandsWeight();
     }
@@ -51,6 +52,8 @@ public class PlayerMoveControl : MonoBehaviour
             //rightHandIKConstraint.weight = animator.GetFloat("Right Hand Weight");
             //leftHandIKConstraint.weight = animator.GetFloat("Left Hand Weight");
         }
+=======
+>>>>>>> parent of d687da8 (恢复到修改Curve文件)
     }
     public void GetPlayerMoveInput(InputAction.CallbackContext context){
         playerInputVec = context.ReadValue<Vector2>();
@@ -73,56 +76,46 @@ public class PlayerMoveControl : MonoBehaviour
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 0.5f);
         animator.SetFloat("Vertical Speed", currentSpeed);
     }
-    public void GetRifleIdle(){
-        if(temp == 1){
-            animatorStateInfo = animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Arms"));
-            if(animatorStateInfo.IsName("Rifle Idle")){
-                isHandleGun = true;
-                animator.SetBool("isHandleGun",true);
-            }
+    public void GetPlayerHandleGun(InputAction.CallbackContext context){
+        if(isHandleGun == false) { 
+            animator.SetBool("isHandleGun", true);
+            isHandleGun = true; 
         }
-        else if(temp == 0){
+        else { 
+            animator.SetBool("isHandleGun", false);
             isHandleGun = false;
-            animator.SetBool("isHandleGun",false);
-        }
-    }
-    public void GrabAndPutBackRifle(InputAction.CallbackContext context){
-        temp = (temp + 1) % 2; // 判断是拿枪还是放回, 1为拿, 0为放
-        if(temp == 1){
-            animator.SetBool("isGrabRifle",true);
-            animator.SetBool("isPutBackRifle",false);
-            Debug.Log("拿出枪");
-        }
-        else if(temp == 0){
-            animator.SetBool("isGrabRifle",false);
-            animator.SetBool("isPutBackRifle",true);
-            Debug.Log("放回背上");
         }
     }
     public void GetPlayerAim(InputAction.CallbackContext context){
         if(context.action.phase == InputActionPhase.Started){
             animator.SetBool("isAiming", true);
-            isAiming = true;
-            if(isAiming && isHandleGun) IKTargetsController.Instance.IKTargetsAiming();
+            IKTargetsController.Instance.IKTargetsAiming();
         }
         else if(context.action.phase == InputActionPhase.Canceled){
             animator.SetBool("isAiming", false);
-            isAiming = false;
-            if(!isAiming && isHandleGun) IKTargetsController.Instance.IKTargetsIdle();
+            IKTargetsController.Instance.IKTargetsIdle();
+        }
+    }
+    public void GetPlayerFire(InputAction.CallbackContext context){
+        if(context.action.phase == InputActionPhase.Performed){
+            animator.SetBool("Fire",true);
+        }
+        else if(context.action.phase == InputActionPhase.Canceled){
+            animator.SetBool("Fire",false);
         }
     }
     public void EnableRifle(EnableRifleType rifleType){
         switch(rifleType){
             case EnableRifleType.BackRifle:
-                rifleOnBack.SetActive(true);
-                rifleInHand.SetActive(false);
                 Debug.Log("激活背上的枪");
                 break;
             case EnableRifleType.HandRifle: 
-                rifleOnBack.SetActive(false);
-                rifleInHand.SetActive(true);
                 Debug.Log("激活手上的枪");
                 break;
         }
+    }
+    public enum EnableRifleType{
+        BackRifle,
+        HandRifle
     }
 }
