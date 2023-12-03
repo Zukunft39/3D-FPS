@@ -31,6 +31,9 @@ public class PlayerMoveControl : MonoBehaviour
     }
 
     public AnimatorStateInfo animatorStateInfo;
+
+    public TwoBoneIKConstraint rightHandIKConstraint;
+    public TwoBoneIKConstraint leftHandIKConstraint;
     private void Start() {
         animator = GetComponent<Animator>();
         playerTransform = transform;
@@ -41,6 +44,13 @@ public class PlayerMoveControl : MonoBehaviour
         RotatePlayer();
         MovePlayer();
         GetRifleIdle();
+        SetTwoHandsWeight();
+    }
+    private void SetTwoHandsWeight(){
+        if(!isHandleGun){
+            //rightHandIKConstraint.weight = animator.GetFloat("Right Hand Weight");
+            //leftHandIKConstraint.weight = animator.GetFloat("Left Hand Weight");
+        }
     }
     public void GetPlayerMoveInput(InputAction.CallbackContext context){
         playerInputVec = context.ReadValue<Vector2>();

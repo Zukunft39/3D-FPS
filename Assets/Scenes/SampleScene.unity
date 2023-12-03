@@ -258,6 +258,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9859624
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.16696773
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2155529125828279708, guid: 0c2ad3a9a07f17b46a67327013fdef35,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -19.223
+      objectReference: {fileID: 0}
     - target: {fileID: -1336559798166816186, guid: 0c2ad3a9a07f17b46a67327013fdef35,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1754,7 +1789,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fddeeac0ebed86c4cab4320764b5c227, type: 3}
       propertyPath: m_Name
-      value: M4A1 Hand
+      value: M4A1 Back
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fddeeac0ebed86c4cab4320764b5c227, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5062,6 +5097,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 68897507}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1120566309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: fddeeac0ebed86c4cab4320764b5c227,
+    type: 3}
+  m_PrefabInstance: {fileID: 440105905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1121652011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4034079879297645243, guid: 0c2ad3a9a07f17b46a67327013fdef35,
@@ -5492,7 +5533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40d4c9d949de6445b0c3bcc3afe16c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 1
+  timeScale: 0.5
 --- !u!4 &1262712909
 Transform:
   m_ObjectHideFlags: 0
@@ -7179,6 +7220,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 68897507}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1905068507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: fddeeac0ebed86c4cab4320764b5c227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1152681426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1905897239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7245377330877785880, guid: 0c2ad3a9a07f17b46a67327013fdef35,
@@ -7846,6 +7893,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cddfaf8c5d6e254287a5b1511978240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp: 0
+  rifleOnBack: {fileID: 1120566309}
+  rifleInHand: {fileID: 1905068507}
+  rightHandIKConstraint: {fileID: 1845854321}
+  leftHandIKConstraint: {fileID: 1688624902}
 --- !u!114 &543450652390108311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7972,7 +8024,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 543450652390108310}
         m_TargetAssemblyTypeName: PlayerMoveControl, Assembly-CSharp
-        m_MethodName: GetPlayerHandleGun
+        m_MethodName: GrabAndPutBackRifle
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
