@@ -62,11 +62,11 @@ public class PlayerMoveControl : MonoBehaviour
     public void GetPlayerAim(InputAction.CallbackContext context){
         if(context.action.phase == InputActionPhase.Started){
             animator.SetBool("isAiming", true);
-            
+            IKTargetsController.Instance.IKTargetsAiming();
         }
         else if(context.action.phase == InputActionPhase.Canceled){
             animator.SetBool("isAiming", false);
-            
+            IKTargetsController.Instance.IKTargetsIdle();
         }
     }
     public void GetPlayerFire(InputAction.CallbackContext context){

@@ -5,18 +5,61 @@ using UnityEngine;
 
 public class IKTargetsController : MonoBehaviour
 {
+    /// <summary>
+    /// 单例控制IKTargets
+    /// </summary>
+    private static IKTargetsController instance;
+
+    // 获取单例实例的属性
+    public static IKTargetsController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<IKTargetsController>();
+
+                if (instance == null)
+                {
+                    GameObject singletonObject = new GameObject("IKTargetsController");
+                    instance = singletonObject.AddComponent<IKTargetsController>();
+                    DontDestroyOnLoad(singletonObject);
+                }
+            }
+            return instance;
+        }
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this; // 这里的this指代当前实例化的单例对象
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    /// <summary>
+    /// Ik 权重转换
+    /// </summary>
     public Transform leftHandTarget;
+    public Transform leftHandTargetAim;
+    public Transform leftHandTargetIdle;
     public Transform rightHandTarget;
-    public void IKTargetsDefault(){
-        rightHandTarget.transform.eulerAngles = new Vector3(-18.293f, 4.307f, 12.566f);
-        rightHandTarget.transform.position = new Vector3(0.044f, -0.11f, -0.047f);
-        leftHandTarget.transform.eulerAngles = new Vector3(35.091f, -18.14f, -261.433f);
-        leftHandTarget.transform.position = new Vector3(0.134f, 0.019f, 0.105f);
+    public Transform rightHandTargetAim;
+    public Transform rightHandTargetIdle;
+    public void IKTargetsIdle(){   
+        leftHandTarget.position = leftHandTargetIdle.position;
+        leftHandTarget.rotation = leftHandTargetIdle.rotation;
+        rightHandTarget.position = rightHandTargetIdle.position;
+        rightHandTarget.rotation = rightHandTargetIdle.rotation;
     }
     public void IKTargetsAiming(){
-        rightHandTarget.transform.eulerAngles = new Vector3(-0.714f, 15.956f, -9.107f);
-        rightHandTarget.transform.position = new Vector3(0.121f, -0.016f, -0.108f);
-        leftHandTarget.transform.eulerAngles = new Vector3(31.81f, -14.754f, -272.62f);    
-        leftHandTarget.transform.position = new Vector3(0.102f, 0.214f, -0.028f);  
+        leftHandTarget.position = leftHandTargetAim.position;
+        leftHandTarget.rotation = leftHandTargetAim.rotation;
+        rightHandTarget.position = rightHandTargetAim.position;
+        rightHandTarget.rotation = rightHandTargetAim.rotation;
     }
 }
